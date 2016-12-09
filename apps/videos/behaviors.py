@@ -78,13 +78,17 @@ class SubtitlesStep(object):
         icon: icon that represents the step
         user: user icon to display in the step.  If present, the avatar for
             this user is displayed instead of the icon.
+        team: team icon to display in the step.  If present, the avatar for
+            this team is displayed instead of the icon.
         current: Is this step currently in-progress?
     """
-    def __init__(self, label, status, icon=None, user=None, current=False):
+    def __init__(self, label, status, icon=None, user=None, team=None,
+                 current=False):
         self.label = label
         self.status = status
         self.icon = icon
         self.user = user
+        self.team = team
         self.current = current
 
 Button = namedtuple('Button', 'url label')

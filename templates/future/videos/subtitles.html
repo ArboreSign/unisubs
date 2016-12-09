@@ -72,6 +72,8 @@
                 <span class="col-xs-6">
                   {% if step.user %}
                   {% include "future/user-icon.html" with user=step.user %}
+                  {% elif step.team %}
+                  {% include "future/teams/team.html" with team=step.team %}
                   {% else %}
                   <i class="icon {{ step.icon}}"></i>
                   {% endif %}
