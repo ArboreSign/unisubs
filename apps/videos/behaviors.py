@@ -72,21 +72,27 @@ class SubtitlesStep(object):
     function which can be done from the TeamWorkflow class.
 
     Attrs:
-        label: text that describes the step (Subtitle, Review, Approve, etc).
+        action_type: string that identifies the type of step (transcribe,
+            review, approve, etc).
+        label: text that describes the step
+        icon: icon that represents the step
         status: text that describes the progress on the step (In progress,
            Complete, etc).
-        icon: icon that represents the step
         user: user icon to display in the step.  If present, the avatar for
             this user is displayed instead of the icon.
         team: team icon to display in the step.  If present, the avatar for
             this team is displayed instead of the icon.
         current: Is this step currently in-progress?
     """
-    def __init__(self, label, status, icon=None, user=None, team=None,
+
+    # Map action_type values to (label, icon-name) tuples.  Make a
+    # SubtitlesStep subclass and fill these in.
+    labels_and_icons = NotImplemented
+    def __init__(self, action_type, status, user=None, team=None,
                  current=False):
-        self.label = label
+        self.action_type = action_type
+        self.label, self.icon = self.labels_and_icons[action_type]
         self.status = status
-        self.icon = icon
         self.user = user
         self.team = team
         self.current = current
