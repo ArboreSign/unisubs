@@ -1,5 +1,5 @@
 {% extends "future/base.html" %}
-{% load i18n new_subtitles_tags utils_tags %}
+{% load i18n new_subtitles_tags utils_tags media_bundle %}
 {% load url from future %}
 
 {% block head-extra %}
@@ -73,7 +73,7 @@
                   {% if step.user %}
                   {% include "future/user-icon.html" with user=step.user %}
                   {% elif step.team %}
-                  {% include "future/teams/team.html" with team=step.team %}
+                  <a href="{{ team.get_absolute_url }}">{% if team.square_logo_thumbnail_small %}<img src="{{ team.square_logo_thumbnail_small }}" />{% else %}<img src="{% static_url %}images/team.png">{% endif %}</a>
                   {% else %}
                   <i class="icon {{ step.icon}}"></i>
                   {% endif %}
